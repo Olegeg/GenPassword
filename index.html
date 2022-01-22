@@ -1,0 +1,52 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title>GenPass</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="main-window">
+                <div class="container">
+                    <h1 class="header">Password random</h1>
+                    <div class="complite">
+                        <h2 class="complite__header">Result</h2>
+                        <div class="complite__field">pa$$w0rd</div>
+                    </div>
+                    <div class="slider__box">
+                        <div class="slider__length" data-length="3">Length:</div>
+                        <div class="range__slider" data-min="4" data-max="32">
+                            <input type="range" id="slider" min="4" max="32" value="16">
+                        </div>
+                    </div>
+                    <div class="settings">
+                        <h2 class="setting__header">Setting</h2>
+                        <div class="setting__box">
+                            <div class="setting">
+                                <input type="checkbox" id="uppercase" checked>
+                                <label for="uppercase">Uppercase</label>
+                            </div>
+                            <div class="setting">
+                                <input type="checkbox" id="lowercase" checked>
+                                <label for="lowercase">Lowercase</label>
+                            </div>
+                            <div class="setting">
+                                <input type="checkbox" id="number" checked>
+                                <label for="number">Number</label>
+                            </div>
+                            <div class="setting">
+                                <input type="checkbox" id="Symbol" checked>
+                                <label for="Symbol">Symbol</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button id="btn__generator">Generate Password</button>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="js/app.js"></script>
+</html>
