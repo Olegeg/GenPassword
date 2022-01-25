@@ -3,13 +3,15 @@ console.clear();
 const slider = document.querySelector("#slider"),
       sliderLength = document.querySelector(".slider__length"),
       btnGenerator =document.getElementById("btn__generator"),
-      display = document.querySelector(".complite__field"),
       numberCheck = document.getElementById("number"),
       symbolCheck = document.getElementById("symbol"),
       lowercaseCheck = document.getElementById("lowercase"),
       uppercaseCheck = document.getElementById("uppercase"),
       settingBox = document.querySelector(".setting__box"),
-      root = getComputedStyle(document.querySelector(":root"));
+      root = getComputedStyle(document.querySelector(":root")),
+      result = document.querySelector(".complite"),
+      copyBtn = document.querySelector(".stick__copy"),
+      display = document.querySelector(".complite__field");
 
 const fillSlider = {
     fill: root.getPropertyValue("--lime-dark-color"),
@@ -55,15 +57,17 @@ const randomFunc = {
     lower: getRandomLowercase
 };
 
+let isGeneratePassword = false;
 btnGenerator.addEventListener("click", event => {
     const length = slider.value,
           hasNumber = numberCheck.checked,
-          hasSymbol = numberCheck.checked,
+          hasSymbol = symbolCheck.checked,
           hasUpper = uppercaseCheck.checked,
           hasLower = lowercaseCheck.checked;
 
     const valuesGenerate = [length, hasNumber, hasSymbol, hasLower, hasUpper];
     display.innerHTML = generatePassword(...valuesGenerate) || "SELECT VALUES";
+    isGeneratePassword = true;
 });
 
 // function which generate password
@@ -102,3 +106,26 @@ function disableCheckbox() {
         el.disabled = totalChecked.length === 1;
     })
 }
+
+const coordsResult = {
+    top: result.getBoundingClientRect().top,
+    left: result.getBoundingClientRect().left
+};
+
+result.addEventListener("mousemove", function(event) {
+    if (isGeneratePassword) {
+        copyBtn.style.opacity = "1";
+        copyBtn.style.pointerEvents = "all";
+        copyBtn.style.top = event.clientY - coordsResult.top - copyBtn.offsetHeight / 2 + "px";
+        copyBtn.style.left = event.clientX - coordsResult.left - copyBtn.offsetWidth / 2 + "px";
+    }
+    document.onmouseout = onMouseOut;
+
+    function onMouseOut(event) {
+        let current = event.target;
+        if (current.closest(".complite")) return;
+        copyBtn.style.opacity = '';
+		copyBtn.style.pointerEvents = 'none';
+        result.onmouseout = null;
+    }
+});

@@ -45,17 +45,35 @@ body {
 .complite__header {
     margin-bottom: 5px;
 }
-.complite__field {
+.complite {
+    margin-bottom: var(--indent-bottom);
     height: 50px;
     width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.complite__field {
     border: var(--border-size) solid var(--lime-color);
     margin-bottom: var(--indent-bottom);
     line-height: 46px;
     text-align: center;
     white-space: nowrap;
     font-size: 14px;
-    position: relative;
 }
+.stick__copy {
+    background: url(../img/copy.svg) center no-repeat;
+    width: 24px;
+    height: 24px;
+    border: var(--border-size) solid var(--lime-color);
+    padding: 14px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: all 350ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
 /* SLIDER */
 .slider__box {
     margin-bottom: var(--indent-bottom);
@@ -199,3 +217,4 @@ body {
     background-color: var(--dark-color);
     color: var(--lime-color);
 }
+
